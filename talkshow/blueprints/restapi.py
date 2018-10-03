@@ -3,6 +3,8 @@ from flask import current_app as app
 from flask_restful import Api, Resource, reqparse
 from flask_simplelogin import login_required
 
+from talkshow.utils import slugify
+
 bp = Blueprint('restapi', __name__, url_prefix='/api/v1')
 api = Api(bp)
 
@@ -41,7 +43,8 @@ class Event(Resource):
                   description: The id of the created event
         """
         event = event_post_parser.parse_args()
-        new = app.db['events'].insert({'name': event.name, 'date': event.date})
+        new = app.db['events'].insert({'name': event.name, 'date': event.date,
+            'slug':slugify(event.name)})
         return {'event_created': new.inserted_id}, 201
 
 

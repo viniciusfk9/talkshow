@@ -38,7 +38,7 @@ class ProposalForm(FlaskForm):
 @bp.route('/<event_id>/', methods=['GET', 'POST'])
 def event(event_id):
     """A form to submit a talk to the selected event"""
-    event = app.db['events'].find_one({'_id': event_id})
+    event = app.db['events'].find_one({'slug': event_id})
     if not event:
         abort(404, 'Evento não encontrado')
 
@@ -47,7 +47,7 @@ def event(event_id):
     if form.validate_on_submit():
         # Se estamos no meio de um submit válido preparamos os dados
         proposal = form.data.copy()
-        proposal['event_id'] = event_id
+        proposal['event_id'] = event['_id']
         proposal['date'] = datetime.datetime.today().date().isoformat()
         proposal['approved'] = False
         # e gravamos no banco de dados
