@@ -5,7 +5,7 @@ from talkshow.utils import slugify
 
 
 def configure(app):
-    """Attach new commands in to app"""
+    """Attach new commands to app"""
 
     @app.cli.command()
     @click.option('--name', '-n', required=True)
