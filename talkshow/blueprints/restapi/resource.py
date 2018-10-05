@@ -4,9 +4,6 @@ from flask_simplelogin import login_required
 
 from talkshow.utils import slugify
 
-bp = Blueprint('restapi', __name__, url_prefix='/api/v1')
-api = Api(bp)
-
 event_post_parser = reqparse.RequestParser()
 event_post_parser.add_argument('name', required=True)
 event_post_parser.add_argument('date', required=True)

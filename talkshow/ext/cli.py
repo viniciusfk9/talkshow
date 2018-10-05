@@ -1,6 +1,5 @@
 import click
 from talkshow.ext.login import create_user
-
 from talkshow.utils import slugify
 
 
