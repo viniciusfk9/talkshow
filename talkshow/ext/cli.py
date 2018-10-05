@@ -11,12 +11,12 @@ def configure(app):
     @click.option('--date', '-d', required=True)
     def addevent(name, date):
         """Creates a new event entry"""
-        
+
         # Generate a slug from a event name
         slug = slugify(name)
 
-        event = app.db['events'].insert_one({'name': name, 'date': date, 
-            'slug':slug})
+        app.db['events'].insert_one({'name': name, 'date': date,
+                                     'slug': slug})
         click.echo(f"{slug} cadastrado com sucesso!")
 
     @app.cli.command()

@@ -39,7 +39,7 @@ class Event(Resource):
         """
         event = event_post_parser.parse_args()
         new = app.db['events'].insert({'name': event.name, 'date': event.date,
-            'slug':slugify(event.name)})
+                                       'slug': slugify(event.name)})
         return {'event_created': new.inserted_id}, 201
 
 
